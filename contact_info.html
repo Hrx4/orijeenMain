@@ -1,0 +1,38 @@
+<?php
+// Include the database connection configuration file
+include_once('..config.php');
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["submit"]) && $_POST["submit"] === "Send Message") {
+        // Create a prepared statement
+        $sql = "INSERT INTO contact_info (name, email, subject, message) 
+                VALUES (?, ?, ?, ?)";
+        
+        // Initialize a prepared statement
+        $stmt = mysqli_stmt_init($conn);
+        
+        if (mysqli_stmt_prepare($stmt, $sql)) {
+            // Bind the parameters
+            mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $subject, $message);
+            
+            // Get form data
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $subject = $_POST['subject'];
+            $message = $_POST['message'];
+            
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                // Form submitted successfully
+                echo '<script>alert("Form submitted successfully!");</script>';
+            } else {
+                // Form submission failed
+                echo '<script>alert("Form submission failed. Error: ' . mysqli_error($conn) . '");</script>';
+            }
+            
+            // Close the statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+}
+?>
