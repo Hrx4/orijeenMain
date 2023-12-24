@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
 
 app.use('/contact' , require('./routes/contactRoutes'))
 app.use('/apply', require('./routes/applyRoutes'))
+app.use('/class', require('./routes/classRoute'))
+app.use('/subject', require('./routes/subjectRoute'))
+app.use('/course', require('./routes/courseRoute'))
 
 
 
