@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const classSchema = mongoose.Schema({
     
-    classList: {
+    className: {
         type: String
     },  
     

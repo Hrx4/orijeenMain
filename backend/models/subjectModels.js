@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const subjectSchema = mongoose.Schema({
     
-    subjectList: {
+    subjectName: {
         type: String
     },  
     

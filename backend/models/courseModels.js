@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const courseSchema = mongoose.Schema({
     
-    courseList: {
+    courseName: {
         type: String
     },  
     
