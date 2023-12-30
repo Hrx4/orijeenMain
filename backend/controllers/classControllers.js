@@ -8,6 +8,7 @@ const cretaeClass = asyncHandler(async (req, res) => {
   const classManagment = await classModels.create({
     className
   });
+  console.log(classManagment);
   res.status(200).json(classManagment);
 });
 
