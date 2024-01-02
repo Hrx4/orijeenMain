@@ -22,6 +22,13 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the Course"],
     },
+    studentPassword: {
+        type: String,
+        required: [true, "Please add the password"],
+    },
+    studentPhoto: {
+        type: String,
+    },
     studentSubjects: {
         type: [],
         required: [true, "Please add the Subjects"],

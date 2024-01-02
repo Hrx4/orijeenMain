@@ -16,12 +16,16 @@ const createStudent = asyncHandler(async (req, res) => {
     studentPaymentType,
     studentFee,
     studentBlood,
+    studentPhoto,
+    studentPassword,
     studentCategory,
     admissionAmount,
     guardianName,
     createdMonth,
     createdYear,
   } = req.body;
+  console.log(studentPassword);
+
   const student = await studentModels.create({
     studentEnrollment: studentEnrollment,
     studentName: studentName,
@@ -33,6 +37,8 @@ const createStudent = asyncHandler(async (req, res) => {
     studentAddress: studentAddress,
     studentPaymentType: studentPaymentType,
     studentFee : studentFee,
+    studentPhoto : studentPhoto,
+    studentPassword: studentPassword,
     studentBlood : studentBlood,
     studentCategory : studentCategory,
     guardianName: guardianName,
@@ -41,7 +47,6 @@ const createStudent = asyncHandler(async (req, res) => {
     createdYear: createdYear,
   });
 
-  
 
   const d = new Date();
   const payment = 
@@ -107,6 +112,8 @@ const updateStudent = asyncHandler(async (req, res) => {
     studentCourse,
     studentSubjects,
     studentPhone,
+    studentPhoto,
+    studentPassword,
     studentAddress,
     studentPaymentType,
     studentFee,
@@ -128,6 +135,8 @@ const updateStudent = asyncHandler(async (req, res) => {
     studentBatch: studentBatch,
     studentCourse: studentCourse,
     studentSubjects: studentSubjects,
+    studentPhoto : studentPhoto,
+    studentPassword : studentPassword,
     studentPhone: studentPhone,
     studentAddress: studentAddress,
     studentPaymentType: studentPaymentType,

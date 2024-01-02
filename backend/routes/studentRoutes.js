@@ -12,6 +12,7 @@ const {
   getMonthlyDueDetails,
   getTotalDueDetails,
 } = require("../controllers/studentControllers");
+const { getStudentDetails } = require("../controllers/studentDetailsControllers");
 
 const router = express.Router();
 
@@ -24,5 +25,6 @@ router.route("/monthlyincome").post(getMonthlyIncomeDetails);
 router.route("/totalincome").post(getTotalIncomeDetails);
 router.route("/monthlydue").post(getMonthlyDueDetails);
 router.route("/totaldue").post(getTotalDueDetails);
+router.route('/details').post(getStudentDetails)
 
 module.exports = router;
