@@ -38,7 +38,9 @@ app.use('/subject', require('./routes/subjectRoute'))
 app.use('/course', require('./routes/courseRoute'))
 app.use('/student', require('./routes/studentRoutes'))
 app.use('/superadmin' , require('./routes/superAdminRoute'))
-
+app.use('/teacher', require('./routes/teacherRoutes'))
+app.use('/expense', require('./routes/expenseRoutes'))
+app.use('/note', require('./routes/noteRoutes'))
 
 
 
