@@ -14,6 +14,9 @@ const expense = mongoose.Schema({
     expenseDate: {
         type : String
     },
+    expenseMonth : {
+        type: Number
+    }
     
     
 }, {

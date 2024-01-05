@@ -1,11 +1,14 @@
 const asyncHandler = require('express-async-handler');
 const expenseModels = require('../models/expenseModels');
+const teacherPaymentModels = require('../models/teacherPaymentModels');
 
 const createExpense = asyncHandler(async(req , res) => {
     const {expenseTitle , expenseDescription , expenseAmount , expenseDate } = req.body;
- 
+    const d = new Date();
+
     const contact = await expenseModels.create({
-        expenseTitle , expenseDescription , expenseAmount , expenseDate
+        expenseTitle : expenseTitle,
+        expenseMonth : d.getMonth() , expenseDescription:expenseDescription , expenseAmount:expenseAmount , expenseDate : expenseDate
     })
     res.status(200).json(contact);
 
@@ -50,7 +53,25 @@ const updateExpense = asyncHandler(async(req , res) => {
     res.status(201).json(contact);
 })
 
+const getExpenseDetails = asyncHandler(async(req , res)=>{
+    const expense = await expenseModels.find();
+    const teacher = await teacherPaymentModels.find();
+
+    let monthlyExpense =0;
+    let totalExpense = 0;
+    const d = new Date();
+
+    expense?.map((item , index)=>{
+        if(item.expenseMonth=== d.getMonth()) monthlyExpense+=item.expenseAmount
+        totalExpense+=item.expenseAmount
+    })
+    teacher?.map((item , index)=>{
+       if (item.lastExpenseMonth===d.getMonth()) monthlyExpense+=item.paymentMoney
+       totalExpense+=item.totalExpense
+    })
+    res.status(200).json({monthlyExpense : monthlyExpense , totalExpense:totalExpense , totalTeacher : teacher.length})
+})
 
 
 
-module.exports = {createExpense , getExpense  , deleteExpense , updateExpense}
+module.exports = {createExpense , getExpense  , deleteExpense , updateExpense , getExpenseDetails}

@@ -186,7 +186,7 @@ const updatePayment = asyncHandler(async (req, res) => {
         paidYear: d.getFullYear(),
         paymentMoney: totalFee,
         paymentType: paymentType,
-        paymentDate: d,
+        paymentDate:  d.toISOString().split("T")[0],
       },
     ];
   });
