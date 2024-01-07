@@ -19,7 +19,7 @@ const studentSchema = mongoose.Schema({
         required: [true, "Please add the Board"],
     },
     studentCourse: {
-        type: String,
+        type: [],
         required: [true, "Please add the Course"],
     },
     studentPassword: {

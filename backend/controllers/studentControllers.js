@@ -81,8 +81,10 @@ const createStudent = asyncHandler(async (req, res) => {
 const getStudent = asyncHandler(async (req, res) => {
   const { studentCourse } = req.body;
 
-  const students = await studentModels.find({ studentCourse: studentCourse });
-  res.status(200).json(students);
+  let students = await studentModels.find();
+  students = students.filter((item) => {
+    return item.studentCourse.some((elem) => elem === studentCourse);
+  });  res.status(200).json(students);
 });
 const getStudentPayment = asyncHandler(async (req, res) => {
   const { paymentId } = req.body;
@@ -261,8 +263,9 @@ const getMonthlyIncomeDetails = asyncHandler(async (req, res) => {
   }
 
   if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
-  }
+    students = students.filter((item) => {
+      return item.studentCourse.some((elem) => elem === studentCourse);
+    });  }
   if (studentClass !== "")
     students = students.filter((item) => item.studentClass === studentClass);
 
@@ -289,7 +292,9 @@ const getTotalIncomeDetails = asyncHandler(async (req, res) => {
   }
 
   if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
+    students = students.filter((item) => {
+      return item.studentCourse.some((elem) => elem === studentCourse);
+    });
   }
   if (studentClass !== "")
     students = students.filter((item) => item.studentClass === studentClass);
@@ -320,8 +325,10 @@ const getMonthlyDueDetails = asyncHandler(async (req, res) => {
   }
 
   if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
-  }
+    students = students.filter((item) => {
+      return item.studentCourse.some((elem) => elem === studentCourse);
+    });
+    }
   if (studentClass !== "")
     students = students.filter((item) => item.studentClass === studentClass);
 
@@ -351,8 +358,10 @@ const getTotalDueDetails = asyncHandler(async (req, res) => {
   }
 
   if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
-  }
+    students = students.filter((item) => {
+      return item.studentCourse.some((elem) => elem === studentCourse);
+    });
+    }
   if (studentClass !== "")
     students = students.filter((item) => item.studentClass === studentClass);
 
