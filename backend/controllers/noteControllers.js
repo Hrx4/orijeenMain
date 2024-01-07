@@ -12,9 +12,19 @@ const createNote = asyncHandler(async(req , res) => {
 })
 
 
+
 const getNote = asyncHandler(async(req , res) => {
     const contacts = await noteModels.find()
     res.status(200).json(contacts);
+})
+
+const getStudentNote = asyncHandler(async(req , res) => {
+    const {noteBatch , noteCourse , noteClass} = req.body;
+    let notes = await noteModels.find({noteCourse:noteCourse})
+        notes = notes.filter((item) => item.noteBatch === noteBatch);
+        notes = notes.filter((item) => item.noteClass === noteClass);
+
+          res.status(200).json(notes);
 })
 
 const deleteNote = asyncHandler(async(req , res) => {
@@ -53,4 +63,4 @@ const updateNote = asyncHandler(async(req , res) => {
 
 
 
-module.exports = {createNote , getNote  , deleteNote , updateNote}
+module.exports = {createNote , getNote  , deleteNote , updateNote , getStudentNote}
