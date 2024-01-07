@@ -7,7 +7,7 @@ const paymentSchema = mongoose.Schema({
         required: [true, "Please add the Title"],
     },
     studentCourse: {
-        type: String,
+        type: [],
         required: [true, "Please add the Course"],
     },
     studentName: {
