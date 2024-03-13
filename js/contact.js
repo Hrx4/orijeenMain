@@ -11,9 +11,9 @@ forme1.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(forme1);
   const data = Object.fromEntries(formData);
-
+  const formDetail = document.getElementById("MyForm")
   try {
-    const res = await fetch(`orijeen-main-ldnza9odt-hrx4.vercel.app/contact/`, {
+    const res = await fetch(`https://orijeen-admin.vercel.app/contact/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -29,6 +29,8 @@ forme1.addEventListener("submit", async (event) => {
     // let resJson = await res.json();
     if (res.status === 200) {
       console.log("fine");
+      alert("Form submitted");
+      formDetail.reset()
     } else {
       console.log("Some error occured");
     }
